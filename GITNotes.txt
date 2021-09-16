@@ -1,0 +1,15 @@
+Git is a version control system.
+GitHub is a hosting service.
+
+To create a local Repository, we need to go to that project where we had the code base.
+	Right click and select GitBash here.
+	
+git init() to initialize the folder as repository we use this command.
+git status - to check the tracked and untracked files along with comments.
+git add filename - it will add the files from tracking to staging area. 
+	Ex: git add readme.txt
+		git add * -- will add all files at once.
+git commit -m "message" - will add the file to local repository which are present in staging.
+git config --global user.email "suryavarma5@gmaill.com" - creates an email for user to contact to GITHUB.
+git config --global user.name "suryavarma" - creates a user name to contact to GITHUB.
+git remote add https://github.com/suryavarma5/Newbie.git - added a remote url from GITHUB to local repository.
