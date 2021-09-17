@@ -13,3 +13,5 @@ git commit -m "message" - will add the file to local repository which are presen
 git config --global user.email "suryavarma5@gmaill.com" - creates an email for user to contact to GITHUB.
 git config --global user.name "suryavarma" - creates a user name to contact to GITHUB.
 git remote add https://github.com/suryavarma5/Newbie.git - added a remote url from GITHUB to local repository.
+git push -u origin master - it will push the origin to the master branch in GITHUB.
+git clone https://github.com/suryavarma5/Newbie - to clone an existing repo from GITHUB to local.
