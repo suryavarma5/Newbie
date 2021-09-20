@@ -1,0 +1,218 @@
+Cloud Formation :
+-----------------
+
+
+
+What Is AWS CloudFormation?
+
+It uses template files to automate the setup of AWS resources.
+
+What is a CloudFormation template?
+
+A declaration of AWS resourses that make up a stack. 
+In the template, you declare the AWS resources you want to create and configure.
+
+Cloud Formation Templates ---- JSON or YAML
+
+
+JSON :  https://www.json.org/json-en.html
+------
+1) In most of the use cases in JSON script :
+
+{}
+[]
+""
+,
+:
+
+ Sample JSON Template Details :
+ ------------------------------
+
+2) An object is an unordered set of name/value pairs. An object begins with {left brace and ends with }right brace. 
+   Each name is followed by :colon and the name/value pairs are separated by ,comma.
+
+3) In this left side are keys & right side are values. And compulsory with in "".
+   The JSON standard requires double quotes and will not accept single quotes, nor will the parser.
+
+   "key": "Value"
+
+4) The square brackets [] produce a list/array. (list multiple values) 
+
+   The curly brackets produce an object with key/value pairs.
+
+   The list can then be a value of a key/value pair.
+   
+5) A template is a JSON or YAML text file that contains the configuration information about 
+   the AWS resources you want to create in the stack. 
+   
+6) The Sample template includes six top--level sections :
+   
+   AWSTemplateFormatVersion,
+   Description, 
+   Parameters, 
+   Mappings, 
+   Resources, 
+   Outputs
+   
+   however, only the Resources section is required.
+  
+7) The three kinds of update behaviors with CloudFormation :  https://www.alexdebrie.com/posts/understanding-cloudformation-updates/
+  ----------------------------------------------------------
+1) Update with no interruption: Your resource is updated in place without any disruption to normal use.
+
+2) Update with some interruption: Your resource is still the same resource, but there will be some downtime as the update is applied.
+
+3) Replacement: An entirely new resource is created to replace your existing resource. --> (True/False)
+
+
+Sample JSON :
+-------------
+
+{
+  "AWSTemplateFormatVersion" : "version date",
+
+  "Description" : "JSON string",
+
+  "Metadata" : {
+    template metadata
+  },
+
+  "Parameters" : {
+    set of parameters
+  },
+  
+  "Rules" : {
+    set of rules
+  },
+
+  "Mappings" : {
+    set of mappings
+  },
+
+  "Conditions" : {
+    set of conditions
+  },
+
+  "Transform" : {
+    set of transforms
+  },
+
+  "Resources" : {
+    set of resources
+  },
+  
+  "Outputs" : {
+    set of outputs
+  }
+}
+
+Sample YML :
+------------
+
+ In this YAML Template there is indentation is more importanat and no braces.
+
+---
+AWSTemplateFormatVersion: "version date"
+
+Description:
+  String
+
+Metadata:
+  template metadata
+
+Parameters:
+  set of parameters
+
+Rules:
+  set of rules
+
+Mappings:
+  set of mappings
+
+Conditions:
+  set of conditions
+
+Transform:
+  set of transforms
+
+Resources:
+  set of resources
+
+Outputs:
+  set of outputs
+
+########################################################################
+
+Designer View :
+---------------
+
+before you begin, make sure you have an Amazon EC2 key pair in the region in which you're creating your stack.
+
+1) First go to the AWS CloudFormation Designer view.
+
+2) In this editor, select New (left side) template and name it as WebServer.
+
+3) Currently, we have a blank template that isn't valid. In the next steps, we'll add resources to make it valid.
+
+4) In the Resource types pane, from within the EC2 category, drag a VPC resource type onto the Canvas pane.
+
+5) The resources are organized by resource categories. All of the resources we're adding are in the EC2 category.
+
+6) Next rename the VPC and we will add resources to the vpc.
+
+7) Drag the VPC resource to expand it so that it's large enough to fit several more resources.
+
+8) We need to add a subnet because you can't add an EC2 instance, which hosts the website, directly into the VPC; instances must be located in a subnet.
+
+9) Add a Subnet resource type inside the VPC and rename it.
+
+10) When you add the subnet inside the VPC, AWS CloudFormation Designer automatically associates the subnet with the VPC.
+
+11) Add an Instance resource type inside the Subnet resource and rename it.
+
+12) Add a SecurityGroup resource type inside the VPC and rename it.
+
+13) Add an InternetGateway resource type anywhere outside of the VPC and rename it.
+
+14) The Internet gateway enables communication between the instance that is inside the VPC and the Internet. 
+    Without the Internet gateway, no one can access your website.
+	
+15) Create a connection between the InternetGateway resource and the VPC resource.
+
+16) On the InternetGateway resource, hover over the Internet gateway attachment (AWS::EC2::VPCGatewayAttachment).
+
+17) Drag a connection to the VPC. (The border of valid target resources changes color.)
+
+18)  Next, we need to add a route table and route to specify how to direct network traffic from within a subnet. 
+     Add a RouteTable inside the VPC and rename it.
+	 
+19) To add a routing rule to the route table, add a Route resource type inside the RouteTable resource and rename it.
+
+20) For the public route, we want the Internet gateway to be the destination target. 
+    Use GatewayId to create a connection from the Route resource to the Internet gateway, 
+	similar to the way you created a connection between the Internet gateway and the VPC.
+	
+21) Create an explicit dependency between the Route resource and the Internet gateway-VPC attachment.
+
+22) On the Route resource, hover over the DependsOn dot.
+    Drag a connection to the Internet gateway-VPC attachment (AWS::EC2::VPCGatewayAttachment).
+	
+23) Create another dependency from the Instance resource to the Route resource.	
+
+24) Drag a connection from the RouteTable resource to the Subnet resource to associate the route table and subnet.
+
+25) After this save the file.
+
+26) Next we need to add parameters, mappings and outputs.
+
+27) In the integrated editor pane, select the parameters, mappings and Outputs tab.
+    Copy the JSON (or) YAML output (use AWS CloudFormation Documentation) and paste it into the integrated editor and save the file.
+	
+28) Next Specify resource properties.
+
+29) Next choose create stack --> enter stack name and enter key pair name.
+
+30) Keep the other default parameter values and choose Next.
+
+Completed....
+
