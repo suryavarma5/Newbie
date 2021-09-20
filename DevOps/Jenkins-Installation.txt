@@ -1,0 +1,39 @@
+          
+		  JENKINS:
+=========================================
+
+1.Steps to Download and Install Jenkins.
+
+2.download jenkins from website.
+
+3.open chrome and setup "http://localhost:8080/" .
+
+4. create Username and Password.
+
+5. install All Plugins Required for Your Project.
+
+6.install All Maven Related Plugins.
+
+7.Restart Jenkins servins.
+
+8.Click On manage Jenkins Plugins ->Global Tool Configuration->Click on Jdk installations ->Add Jdk folder path Exclude Bin
+
+9.intially We Have to Download  Apache Maven in c Drive.
+
+10. Click on Maven installations ->Add Maven Folder path. 
+
+11. Goto Dashboard -> Click On New Item ->Enter Job name -(Click on Either Maven or Free Style Project.).
+
+12. Click on Builds ->Click On Add Build Setup ->click on Invoke maven Triggers(if it is Maven Project.).
+
+14.Click On Maven Version ->Enter Maven_Home --> Set Path For Maven Installation in System varaible ->
+
+15.In Goals ->Add Clean Test instially(After First Execution of Build Sucesss Change To maven Test.).
+
+16. In Eclipse After Clean maven Project In Jenkins ->Change JDK Version To latest Version. Because It intially will Take 
+
+jdk 1.5  Version path.
+
+17.POLL SCM -> we can Schedule the Build Triggers Timings
+
+18. Sucessfully Build Suceeded.
