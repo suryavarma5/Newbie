@@ -1,0 +1,178 @@
+         ===============================================================================================================
+                                                   Python-File :
+         ===============================================================================================================
+
+--> File: It means collection of data.
+   There are 2 types of files:
+       Text files
+	   Binary files
+	   
+# File creation can be done by using open() function.
+# It takes 2 parameters filename and access mode.
+
+file object = open("filename","access mode")
+	   
+# We can specify the mode while opening a file. In mode, we specify whether we want to read r, write w or append a to the file. 
+# We can also specify if we want to open the file in text mode or binary mode.
+# The default is reading in text mode. In this mode, we get strings when reading from the file.
+# When we are done with performing operations on the file, we need to properly close the file by using the close() function.
+# a file operation takes place in the following order:
+
+# Open a file
+# Read or write (perform operation)
+# Close the file
+
+
+=========================================================================================================================
+Modes :
+------
+
+r	# Opens a file for reading. (default)
+w	# Opens a file for writing. Creates a new file if it does not exist or truncates the file if it exists.
+x	# Opens a file for exclusive creation. If the file already exists, the operation fails.
+a	# Opens a file for appending at the end of the file without truncating it. Creates a new file if it does not exist.
+t	# Opens in text mode. (default)
+b	# Opens in binary mode.
++	# Opens a file for updating (reading and writing)
+
+Ex:
+--
+f = open("test.txt","r")
+# perform file operations
+f.close()
+
+Ex:
+--
+
+f = open("test.txt")      # equivalent to 'r' or 'rt'
+f = open("test.txt",'w')  # write in text mode
+f = open("img.bmp",'r+b') # read and write in binary mode
+
+=========================================================================================================================
+With statement:
+--------------
+# This "With" keyword automatically close the file, you need not to mention f.close().
+
+# with open("test.txt","w") as f:
+
+READ:
+----
+# file pointer points at the begining of the file.
+# file should exist before opening in read mode.
+
+# fp = open("test.txt","r")
+  f.read()
+  print(f.read())
+
+********************
+
+r = open('new.txt','r').read()
+print(r)
+
+=========================================================================================================================
+READLINE() | READLINES() :
+-------------------------
+with open("new.txt","r") as f:
+    f1 = f.readline(1)
+    print(f1)
+
+=========================================================================================================================
+WRITE:
+-----
+# file pointer points at the begining of the file.
+# we need to open it in write w mode.
+# If the file exists the file is opened and pointer points at begining and data overwritten. 
+# Due to this, all the previous data are erased.
+# If the file doesn't exist then new file created with given name.
+
+
+fp = open("test.txt","w")
+f.write()
+print(f.write())
+
+=========================================================================================================================
+APPEND:
+------
+# To append and write the data.
+# If the file exists the file pointer points at end of the content in the file.
+# file doesn't exist new file will be created and file pointer points at the begining.
+
+fp = open("test.txt","a")
+
+************
+
+f1 = open('exampleFile.txt','a')
+f = '\nNew bit of information'
+f1.write(f)
+f1.close()
+
+========================================================================================================================
+Exclusive Mode:
+--------------
+# To open a file in exclusive mode for write operation.
+# Note: The specified file should not be already available. If specified file already available then FileExistsError.
+
+fp = open("test.txt","x")
+
+
+=========================================================================================================================
+File Methods :
+-------------
+
+close()	    # Closes an opened file. It has no effect if the file is already closed.
+detach()	# Separates the underlying binary buffer from the TextIOBase and returns it.
+fileno()	# Returns an integer number (file descriptor) of the file.
+flush()	    # Flushes the write buffer of the file stream.
+isatty()	# Returns True if the file stream is interactive.
+read(n)	    # Reads at most n characters from the file. Reads till end of file if it is negative or None.
+readable()	# Returns True if the file stream can be read from.
+readline(n=-1)	# Reads and returns one line from the file. Reads in at most n bytes if specified.
+readlines(n=-1)	# Reads and returns a list of lines from the file. Reads in at most n bytes/characters if specified.
+seek(offset,from=SEEK_SET)	# Changes the file position to offset bytes, in reference to from (start, current, end).
+seekable()	# Returns True if the file stream supports random access.
+tell()	    # Returns the current file location.
+truncate(size=None)	# Resizes the file stream to size bytes. If size is not specified, resizes to current location.
+writable()	# Returns True if the file stream can be written to.
+write(s)	# Writes the string s to the file and returns the number of characters written.
+writelines(lines)	# Writes a list of lines to the file.
+
+=========================================================================================================================
+
+f.tell()    # get the current file position
+
+
+f.seek(0)   # bring file cursor to initial position
+
+Ex:
+
+data = "We are happy"
+f = open("new.txt","w")
+f.write(data)
+with open("new.txt","r+") as f:
+    text = f.read()
+    print("the current cursor position",f.tell())
+    f.seek(10)
+    print("the current cursor position",f.tell())
+    f.write("Gems")
+
+=========================================================================================================================
+File Properties:
+---------------
+f.name - name of the opened file
+f.mode - In which mode file is opened.
+f.closed - name of the closed file 
+f.readable
+f.writable
+
+Ex:
+f = open("new.txt","w")
+print("Name:",f.name)
+print("Mode",f.mode)
+print("Is Readable:",f.readable())
+print("Is wrietable",f.writable())
+print("closed",f.closed)
+f.close()
+print("closed",f.closed)
+
+=========================================================================================================================
+ref: https://www.programiz.com/python-programming/file-operation

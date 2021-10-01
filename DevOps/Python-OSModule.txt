@@ -1,0 +1,32 @@
+       ====================================================================================================================
+                                                          Python-OS Module
+       ====================================================================================================================
+# The main purpose of the OS module is to interact with your operating system. 
+# It comes with your Python installation, but you still must import it.
+# The primary use I find for it is to create folders, remove folders, move folders, and sometimes change the working directory.
+
+import os
+
+# To current Working Directory:
+
+curDir = os.getcwd()
+print(curDir)
+
+# To make a new directory:
+
+os.mkdir("newDir")
+
+# To change the name of, or rename, a directory:
+
+os.rename("newDir","newDir2")
+
+# To remove a directory:
+
+os.rmdir("newDir2")
+
+# To change a directory:
+
+os.chdir("newpath")
+
+
+ 	   
